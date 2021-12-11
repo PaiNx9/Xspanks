@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CDNSFree2/Plyr/plyr.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="shortcut icon" href="img/comprimidos/ico/ico.ico" type="image/x-icon">
+    <title>Document</title>
+</head>
+
+<body>
+<form action="" method="get">
+    N1: <input onchange="calcular()" autocomplete="off" type="text" id="n1" value="10" /><br> 
+    N2: <input onchange="calcular()"  autocomplete="off" type="text" id="n2" value="100" /><br>
+</form>
+
+<button style="height: 20px; width: 70px; margin-top: 10px;" onclick="calcular()" >calcular</button>
+
+<div id="resultado"></div>
+<div id="resultado1"></div>
+
+<script>
+        function calcular() {
+            valn1 = n1 = parseFloat(document.getElementById('n1').value, 100 );
+            valn2 = n2 = parseFloat(document.getElementById('n2').value, 100);
+            n1 = parseFloat(document.getElementById('n1').value, 100);
+            n2 = parseFloat(document.getElementById('n2').value, 100);
+            //if ( valn1 > valn2 ) {
+        //n1 = parseFloat(document.getElementById('n2').value, 100);
+        //n2 = parseFloat(document.getElementById('n1').value, 100);
+        //}
+
+        contents = $('#resultado').html((((Math.abs(n1-n2)/n2)*100).toFixed(1)+ "%"));
+        contents = $('#resultado1').html((((Math.abs(n1-n2)/n2)*100-100 ).toFixed(1)+ "%"));
+
+           //if ( valn1 == valn2 ) {
+            //contents = $('#resultado').html((50 + "%"));
+            //}
+    }
+</script>
+
+</body>
+</html>
