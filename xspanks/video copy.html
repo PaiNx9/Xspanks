@@ -11,34 +11,136 @@
 </head>
 
 <body>
-<form action="" method="get">
-    N1: <input onchange="calcular()" autocomplete="off" type="text" id="n1" value="10" /><br> 
-    N2: <input onchange="calcular()"  autocomplete="off" type="text" id="n2" value="100" /><br>
+
+   <form name="form_main">
+  <div>
+    <span id="hour">00</span>:<span id="minute">01</span>:<span id="second">00</span>
+  </div>
+
+  <br />
+  <button class="start_" type="button" name="start">start / pause</button>
 </form>
 
-<button style="height: 20px; width: 70px; margin-top: 10px;" onclick="calcular()" >calcular</button>
+    <form name="calcform" action="Calc()" method="post">
+      <input value="10" class="timer_video">
+      <br>
+          <input name="result" value="60" class="time" id="">
+    </form>
 
-<div id="resultado"></div>
-<div id="resultado1"></div>
+<br>
+<button style="height: 20px; width: fit-content;" onclick="calcular()">calcular</button>
 
 <script>
-        function calcular() {
-            valn1 = n1 = parseFloat(document.getElementById('n1').value, 100 );
-            valn2 = n2 = parseFloat(document.getElementById('n2').value, 100);
-            n1 = parseFloat(document.getElementById('n1').value, 100);
-            n2 = parseFloat(document.getElementById('n2').value, 100);
-            //if ( valn1 > valn2 ) {
-        //n1 = parseFloat(document.getElementById('n2').value, 100);
-        //n2 = parseFloat(document.getElementById('n1').value, 100);
-        //}
+      "use strict";
 
-        contents = $('#resultado').html((((Math.abs(n1-n2)/n2)*100).toFixed(1)+ "%"));
-        contents = $('#resultado1').html((((Math.abs(n1-n2)/n2)*100-100 ).toFixed(1)+ "%"));
+let hour = 0;
+let minute = 0;
+let second = 0;
+let millisecond = 0;
+let cron;
 
-           //if ( valn1 == valn2 ) {
-            //contents = $('#resultado').html((50 + "%"));
-            //}
+    var timer_ = false;
+$(".start_").click(function() {
+    if (timer_ == false) {
+      timer_ = true;
+      start();
     }
+    else {
+      timer_ = false
+      pause();
+    }
+})
+
+function start() {
+  pause();
+  cron = setInterval(() => { timer(); }, 10);
+}
+
+function pause() {
+  clearInterval(cron);
+}
+
+function timer() {
+  if ((millisecond += 10) == 1000) {
+    millisecond = 0;
+    second++;
+  }
+  
+  if (second == 60) {
+    second = 0;
+    minute++;
+  }
+
+  if (minute == 60) {
+    minute = 0;
+    hour++;
+  }
+
+  document.getElementById('second').value = returnData(second);
+}
+
+function returnData(input) {
+  return input > -1 ? input : `0${input}`
+}
+
+function returnData(input) {
+  if (second ==  $(".time").val()) {
+    alert("contabilizou uma view")
+  }
+}
+
+$( document ).ready(function()  {
+  calcular()
+})
+
+function calcular() {
+  var calc = $(".timer_video").val()
+
+  if (calc > 4 ) {
+    $(".time").val(3)
+  }
+  if (calc > 9 ) {
+    $(".time").val(4)
+  }
+
+  if (calc > 10) {
+    $(".time").val(5)
+  }
+
+  if (calc > 15) {
+    $(".time").val(7)
+  }
+
+  if (calc > 20) {
+    $(".time").val(8)
+  }
+
+  if (calc > 24) {
+    $(".time").val(9)
+  }
+
+  if (calc > 29) {
+    $(".time").val(10)
+  }
+
+  if (calc > 34) {
+    $(".time").val(12)
+  }
+
+  if (calc > 40) {
+    $(".time").val(14)
+  }
+
+  if (calc > 49) {
+    $(".time").val(16)
+  }
+
+  if (calc > 55) {
+    $(".time").val(19)
+  }
+
+}
+
 </script>
 
 </body>
